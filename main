@@ -1,0 +1,11 @@
+#!/bin/sh
+bin="$(dirname $0)"
+deb="$(./undeb $1)"
+ctrl="$(./unctrl $deb)"
+data="$(./undata $deb)"
+./getinsted "$ctrl" "$2" "$data"
+./getdep "$ctrl" > "$3/$2.tcz.dep"
+mksquashfs "$data"/* "$3/$2.tcz"
+cd "$3"
+md5sum "$2.tcz" > "$2.tcz.md5.txt"
+rm -fr "$deb" "$ctrl" "$data"

@@ -1,0 +1,4 @@
+#!/bin/sh
+d="$(mktemp -d)"
+tar -xvf "$*"/data.tar.* -C "$d" 1>&2 || exit
+echo "$d"

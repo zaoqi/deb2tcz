@@ -1,0 +1,6 @@
+#!/bin/sh
+for p in $(echo $(cat "$*"/control | grep '^Depends' | sed 's/^Depends: \(.*\)$/\1/'
+					cat "$*"/control | grep '^Pre-Depends' | sed 's/^Pre-Depends: \(.*\)$/\1/') |
+			sed 's/([^)]*)//g' | sed 's/ *, */ /g' | sed 's/ *| */ /g') ;do
+	echo $p
+done

@@ -1,0 +1,10 @@
+#!/bin/sh
+mkdir -p "$3/usr/local/tce.installed/"
+echo "#!/bin/sh" >> "$3/usr/local/tce.installed/$2"
+
+if [ -f "$1/postinst" ] ;then
+	cp "$1/postinst" "$3/usr/local/tce.installed/$2-postinst" 1>&2 || exit
+	echo "\"/usr/local/tce.installed/$2-postinst\" configure" >> "$3/usr/local/tce.installed/$2"
+fi
+
+chmod a+x "$3/usr/local/tce.installed/$2"

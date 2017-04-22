@@ -1,0 +1,7 @@
+#!/bin/sh
+f="$(mktemp)"
+cp "$*" "$f" 1>&2 || exit
+cd "$(mktemp -d)"
+ar -xv "$f" 1>&2 || exit
+rm "$f"
+pwd
